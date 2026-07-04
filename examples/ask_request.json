@@ -1,0 +1,6 @@
+{
+  "question": "生产事故复盘报告应该包含哪些内容？",
+  "role": "engineer",
+  "department": "engineering",
+  "top_k": 5
+}

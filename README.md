@@ -40,6 +40,26 @@ curl -X POST http://127.0.0.1:8030/ask \
   -d '{"question":"生产事故复盘报告应该包含哪些内容？","role":"engineer","department":"engineering"}'
 ```
 
+## 一键自检
+
+```bash
+python3 scripts/smoke_test.py
+```
+
+预期输出会包含：
+
+```json
+{
+  "service": "enterprise-knowledge-qa-agent",
+  "status": "ok",
+  "answer_status": "answered",
+  "citation_count": 5,
+  "permission_filter_checked": true
+}
+```
+
+更多请求样例见 [`examples/ask_request.json`](examples/ask_request.json)，回答检查点见 [`examples/expected_answer.md`](examples/expected_answer.md)。
+
 ## 项目结构
 
 ```text
@@ -51,8 +71,10 @@ curl -X POST http://127.0.0.1:8030/ask \
 │   ├── retriever.py     # 文档加载、权限过滤、检索
 │   └── feedback.py      # 用户反馈记录
 ├── data/                # 样例企业知识库文档
+├── examples/            # 请求样例和预期回答
+├── scripts/             # smoke test 等工程脚本
 ├── storage/             # 运行时反馈文件，不提交真实数据
-├── docs/
+├── docs/                # 架构、API、部署、评估、路线图、面试稿
 ├── tests/
 ├── Dockerfile
 ├── docker-compose.yml
@@ -64,3 +86,8 @@ curl -X POST http://127.0.0.1:8030/ask \
 - 当前默认使用轻量关键词检索，生产建议接入向量库、Reranker 和文档解析管线。
 - 当前权限模型为样例字段，真实企业需要接入 SSO、部门组织架构和审计日志。
 - 当前回答生成是模板化总结，真实项目可接入 LLM，但要保留引用和拒答规则。
+
+## 评估与路线图
+
+- [`docs/evaluation.md`](docs/evaluation.md)：定义检索命中、引用准确率、拒答准确率、越权拦截和反馈覆盖指标。
+- [`docs/roadmap.md`](docs/roadmap.md)：说明如何升级到向量库、SSO/RBAC、企业文档源、审计日志和自动评测。
