@@ -1,0 +1,8 @@
+services:
+  enterprise-qa-agent:
+    build: .
+    ports:
+      - "8030:8030"
+    volumes:
+      - ./data:/app/data:ro
+      - ./storage:/app/storage

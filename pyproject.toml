@@ -1,0 +1,43 @@
+[project]
+name = "enterprise-knowledge-qa-agent"
+version = "0.1.0"
+description = "企业知识库问答 Agent：权限过滤、引用溯源、拒答和反馈闭环"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "ranrango" }]
+keywords = ["agent", "rag", "knowledge-base", "fastapi", "enterprise-ai"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = ["fastapi>=0.110.0", "uvicorn[standard]>=0.27.0", "pydantic>=2.0.0"]
+
+[project.scripts]
+enterprise-qa-agent = "src.app.cli:main"
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0", "ruff", "black", "httpx"]
+rag = ["chromadb>=0.5.0", "sentence-transformers>=2.7.0"]
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q --tb=short"
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+
+[tool.black]
+line-length = 100
+target-version = ["py39"]
