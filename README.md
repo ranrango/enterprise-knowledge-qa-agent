@@ -6,6 +6,12 @@
 
 面向企业内部知识库的 RAG 问答 Agent。系统支持文档检索、权限过滤、证据引用、拒答和反馈记录，适合展示企业级 Agent 项目中最常见的工程要求：**能问、能查、能引用、能拒答、能评估、能交付**。
 
+## 视觉概览
+
+![架构图](assets/architecture.svg)
+
+![Smoke Test 输出](assets/smoke-output.svg)
+
 ## 项目亮点
 
 | 能力 | 设计 |
