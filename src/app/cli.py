@@ -15,7 +15,9 @@ def main() -> None:
     parser.add_argument("--json", action="store_true")
     args = parser.parse_args()
 
-    result = answer_question(args.question, role=args.role, department=args.department, top_k=args.top_k)
+    result = answer_question(
+        args.question, role=args.role, department=args.department, top_k=args.top_k
+    )
     if args.json:
         print(json.dumps(result, ensure_ascii=False, indent=2))
     else:

@@ -7,7 +7,9 @@ from pathlib import Path
 DEFAULT_FEEDBACK_PATH = Path(__file__).resolve().parents[2] / "storage" / "feedback.jsonl"
 
 
-def record_feedback(question: str, rating: int, comment: str = "", path: Path | str | None = None) -> dict[str, object]:
+def record_feedback(
+    question: str, rating: int, comment: str = "", path: Path | str | None = None
+) -> dict[str, object]:
     target = Path(path) if path else DEFAULT_FEEDBACK_PATH
     target.parent.mkdir(exist_ok=True)
     item = {

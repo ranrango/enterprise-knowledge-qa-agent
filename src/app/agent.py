@@ -5,8 +5,16 @@ from pathlib import Path
 from .retriever import retrieve
 
 
-def answer_question(question: str, role: str = "employee", department: str = "all", top_k: int = 5, data_dir: Path | str | None = None) -> dict[str, object]:
-    chunks, denied_count = retrieve(question, role=role, department=department, top_k=top_k, data_dir=data_dir)
+def answer_question(
+    question: str,
+    role: str = "employee",
+    department: str = "all",
+    top_k: int = 5,
+    data_dir: Path | str | None = None,
+) -> dict[str, object]:
+    chunks, denied_count = retrieve(
+        question, role=role, department=department, top_k=top_k, data_dir=data_dir
+    )
     if not chunks:
         return {
             "answer": "当前可访问知识库中没有足够证据回答该问题。建议补充文档、提高权限后重试，或转人工确认。",
@@ -20,7 +28,12 @@ def answer_question(question: str, role: str = "employee", department: str = "al
         for chunk in chunks
     ]
     answer = build_answer(question, chunks, denied_count)
-    return {"answer": answer, "citations": citations, "denied_chunks": denied_count, "status": "answered"}
+    return {
+        "answer": answer,
+        "citations": citations,
+        "denied_chunks": denied_count,
+        "status": "answered",
+    }
 
 
 def build_answer(question: str, chunks, denied_count: int) -> str:

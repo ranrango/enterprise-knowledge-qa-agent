@@ -1,5 +1,6 @@
 # 企业知识库问答 Agent
 
+[![CI](https://github.com/ranrango/enterprise-knowledge-qa-agent/actions/workflows/ci.yml/badge.svg)](https://github.com/ranrango/enterprise-knowledge-qa-agent/actions/workflows/ci.yml)
 [![Python](https://img.shields.io/badge/python-3.9%2B-blue)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/API-FastAPI-009688)](https://fastapi.tiangolo.com/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)

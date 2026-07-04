@@ -65,7 +65,13 @@ def can_access(chunk: KnowledgeChunk, role: str, department: str) -> bool:
     return role_ok and dept_ok
 
 
-def retrieve(question: str, role: str = "employee", department: str = "all", top_k: int = 5, data_dir: Path | str | None = None) -> tuple[list[KnowledgeChunk], int]:
+def retrieve(
+    question: str,
+    role: str = "employee",
+    department: str = "all",
+    top_k: int = 5,
+    data_dir: Path | str | None = None,
+) -> tuple[list[KnowledgeChunk], int]:
     query_tokens = tokenize(question)
     chunks = load_chunks(data_dir)
     accessible = [chunk for chunk in chunks if can_access(chunk, role, department)]
