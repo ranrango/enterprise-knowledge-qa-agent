@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from typing import Dict
+
 from fastapi import FastAPI
 from pydantic import BaseModel, Field
 
@@ -23,12 +25,12 @@ class FeedbackRequest(BaseModel):
 
 
 @app.get("/health")
-def health() -> dict[str, str]:
+def health() -> Dict[str, str]:
     return {"status": "ok", "service": "enterprise-knowledge-qa-agent"}
 
 
 @app.post("/ask")
-def ask(request: AskRequest) -> dict[str, object]:
+def ask(request: AskRequest) -> Dict[str, object]:
     return answer_question(
         request.question,
         role=request.role,
@@ -38,5 +40,5 @@ def ask(request: AskRequest) -> dict[str, object]:
 
 
 @app.post("/feedback")
-def feedback(request: FeedbackRequest) -> dict[str, object]:
+def feedback(request: FeedbackRequest) -> Dict[str, object]:
     return record_feedback(request.question, request.rating, request.comment)

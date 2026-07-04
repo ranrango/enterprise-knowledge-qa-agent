@@ -34,6 +34,16 @@
 }
 ```
 
+响应：
+
+```json
+{
+  "status": "recorded",
+  "feedback_id": "2026-07-04T14:30:00.000000Z",
+  "rating": 5
+}
+```
+
 ## `GET /health`
 
 服务健康检查。
